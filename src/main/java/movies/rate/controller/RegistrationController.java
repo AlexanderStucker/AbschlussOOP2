@@ -1,4 +1,4 @@
-package movies.rate;
+package movies.rate.controller;
 
 
 import java.io.IOException;

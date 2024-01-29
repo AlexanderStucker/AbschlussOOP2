@@ -3,6 +3,7 @@ module movies.rate {
     requires javafx.controls;
     requires javafx.fxml;
 
-    opens movies.rate to javafx.fxml;
+    opens movies.rate.controller to javafx.fxml;
     exports movies.rate;
+    exports movies.rate.controller;
 }

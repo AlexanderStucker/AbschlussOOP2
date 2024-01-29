@@ -1,4 +1,4 @@
-package movies.rate;
+package movies.rate.controller;
 
 
 import java.io.IOException;
@@ -33,13 +33,14 @@ public class LoginController {
   public void registerButtonAction(ActionEvent event) throws IOException{
     
     // FXML laden
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/registration.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/registration.fxml"));
     Parent root = fxmlLoader.load();
     
     // Stage für das neue Fenster setzen
     Stage registerStage = new Stage();
     registerStage.setTitle("Registrierung");
     registerStage.setScene(new Scene(root, 508, 354));
+    registerStage.setResizable(false);
 
     // Das Login-Fenster unklickbar machen
     // Login als Elternfenster referenzieren
