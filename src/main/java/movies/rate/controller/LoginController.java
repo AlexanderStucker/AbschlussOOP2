@@ -8,15 +8,18 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import movies.rate.model.User;
 
 public class LoginController {
@@ -25,6 +28,8 @@ public class LoginController {
   private TextField usernameField;
   @FXML
   private TextField passwordField;
+  @FXML
+  private Label wrongPasswordLabel;
   @FXML
   private Button loginButton;
   @FXML
@@ -44,7 +49,14 @@ public class LoginController {
     if(userValidation(username, password)){
       System.out.println("Login");
     }else{
-      System.out.println("User nicht bekannt");
+      wrongPasswordLabel.setText("Wrong password or username");
+      wrongPasswordLabel.setVisible(true);
+
+      // Nach 2 Sekunden wird das Label wieder auf unsichtbar gestellt
+      PauseTransition waitTime = new PauseTransition(Duration.seconds(2));
+      waitTime.setOnFinished(e -> wrongPasswordLabel.setVisible(false));
+      waitTime.play();
+
     }
   }
   
@@ -58,7 +70,7 @@ public class LoginController {
     // Stage für das neue Fenster setzen
     Stage registerStage = new Stage();
     registerStage.setTitle("Registrierung");
-    registerStage.setScene(new Scene(root, 508, 354));
+    registerStage.setScene(new Scene(root, 520, 396));
     registerStage.setResizable(false);
 
     // Das Login-Fenster unklickbar machen

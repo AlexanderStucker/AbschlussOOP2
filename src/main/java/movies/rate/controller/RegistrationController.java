@@ -9,11 +9,15 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import movies.rate.model.User;
 
 
@@ -24,6 +28,10 @@ public class RegistrationController {
   @FXML
   private TextField passwordField;
   @FXML
+  private TextField confirmPasswordField;
+  @FXML
+  private Label messageLabel;
+  @FXML
   private Button registerButton;
   @FXML
   private Button cancelButton;
@@ -33,10 +41,30 @@ public class RegistrationController {
   public void confirmRegistration() {
     String username = usernameField.getText();
     String password = passwordField.getText();
+    String confirmPassword = confirmPasswordField.getText();
 
-    User newUser = new User(username, password);
+      // Überprüfen ob der alle Felder ausgefüllt wurden, die entsprechende Nachricht wird ins Label geschrieben
+      if(!username.isEmpty() && !password.isEmpty() && password.equals(confirmPassword)){
+      User newUser = new User(username, password);
 
-    saveUser(newUser);
+      saveUser(newUser);
+
+      messageLabel.setText("User created");
+      messageLabel.setVisible(true);
+
+    } else if(username.isEmpty()){
+      messageLabel.setText("No username selected");
+      messageLabel.setVisible(true);
+
+    } else{
+      messageLabel.setText("Password does not match");
+      messageLabel.setVisible(true);
+    }
+    // setzt nach 2 sekunden das Label wieder auf unsichtbar
+    PauseTransition waitTime = new PauseTransition(Duration.seconds(2));
+      waitTime.setOnFinished(e -> messageLabel.setVisible(false));
+      waitTime.play();
+
   }
   
   
