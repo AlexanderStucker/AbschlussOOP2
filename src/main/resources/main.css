@@ -3,3 +3,13 @@
     -fx-font-family: sans-serif;
     -fx-background-color: #ffffff;
 }
+
+
+.selected{
+    -fx-background-color: #3d2fb6
+}
+
+.mouse-moved:hover{
+    -fx-background-color: #07060f
+}
+

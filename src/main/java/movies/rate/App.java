@@ -22,6 +22,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("login"), 520, 400);
+        stage.setTitle("CineRate - Login");
         stage.setScene(scene);
         stage.setResizable(false);
         stage.show();

@@ -40,15 +40,31 @@ public class LoginController {
   
   
   @FXML
-  public void loginButtonAction(ActionEvent event){
+  public void loginButtonAction(ActionEvent event) throws IOException{
     String username = usernameField.getText();
     String password = passwordField.getText();
 
-    // TO DO = nächster Screen für Login. Falls der User nicht bekannt ist, fehler anzeigen
     // Falls der User bekannt ist, ist Login i. O. / Falls nicht, login Failed
     if(userValidation(username, password)){
-      System.out.println("Login");
-    }else{
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/movie.fxml"));
+    Parent root = fxmlLoader.load();
+
+
+    // Der Username wird an den movieController weitergegeben
+    movieController giveUsername = fxmlLoader.getController();
+    giveUsername.setUsername(username);
+
+
+    Stage movieStage = new Stage();
+    movieStage.setTitle("CineRate");
+    movieStage.setScene(new Scene(root, 1350, 900));
+    movieStage.setResizable(false);
+    
+    movieStage.show();
+  
+  
+  
+  }else{
       wrongPasswordLabel.setText("Wrong password or username");
       wrongPasswordLabel.setVisible(true);
 
