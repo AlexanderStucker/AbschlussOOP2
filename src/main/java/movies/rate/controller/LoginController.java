@@ -54,15 +54,18 @@ public class LoginController {
     sidebarController giveUsername = fxmlLoader.getController();
     giveUsername.setUsername(username);
 
+    // Stage für das neue Fenster eröffnen
+    Stage mainStage = new Stage();
+    mainStage.setTitle("CineRate");
+    mainStage.setScene(new Scene(root, 1350, 900));
+    mainStage.setResizable(false);
 
-    Stage movieStage = new Stage();
-    movieStage.setTitle("CineRate");
-    movieStage.setScene(new Scene(root, 1350, 900));
-    movieStage.setResizable(false);
-    
-    movieStage.show();
-  
-  
+    // Die Login-Stage schliessen
+    Stage loginStage = (Stage) loginButton.getScene().getWindow();
+    loginStage.close();
+
+    // Die Movie-Stage anzeigen
+    mainStage.show();
   
   }else{
       wrongPasswordLabel.setText("Wrong password or username");
