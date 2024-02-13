@@ -46,12 +46,12 @@ public class LoginController {
 
     // Falls der User bekannt ist, ist Login i. O. / Falls nicht, login Failed
     if(userValidation(username, password)){
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/movie.fxml"));
+    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/sidebar.fxml"));
     Parent root = fxmlLoader.load();
 
 
     // Der Username wird an den movieController weitergegeben
-    movieController giveUsername = fxmlLoader.getController();
+    sidebarController giveUsername = fxmlLoader.getController();
     giveUsername.setUsername(username);
 
 
