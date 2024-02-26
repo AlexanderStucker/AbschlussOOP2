@@ -2,13 +2,31 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.rate.controller.MyListController">
    <children>
-      <Button mnemonicParsing="false" text="Button" />
-      <Button mnemonicParsing="false" text="Button" />
-      <ListView prefHeight="356.0" prefWidth="600.0" />
+      <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
+         <children>
+            <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addMediumButtonAction" text="Add new entry" />
+         </children>
+      </HBox>
+      <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
+         <tabs>
+            <Tab closable="false" text="Movies">
+               <content>
+                  <ListView fx:id="movieListView" prefHeight="200.0" prefWidth="600.0" />
+               </content>
+            </Tab>
+            <Tab closable="false" text="TV-Shows">
+               <content>
+                  <ListView fx:id="serienListView" prefHeight="200.0" prefWidth="600.0" />
+               </content>
+            </Tab>
+         </tabs>
+      </TabPane>
    </children>
 </VBox>

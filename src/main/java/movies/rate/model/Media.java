@@ -72,6 +72,4 @@ public abstract class Media implements Serializable {
         this.fskRating = fskRating;
     }
 
-
-
 }
