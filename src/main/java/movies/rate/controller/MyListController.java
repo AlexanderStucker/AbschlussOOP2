@@ -37,7 +37,7 @@ public class MyListController {
     // Spalten für die Film TableView definieren
     titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
     descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-    releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+    releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("formattedReleaseDate"));
     genreColumn.setCellValueFactory(new PropertyValueFactory<>("genres"));
     myRatingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
 

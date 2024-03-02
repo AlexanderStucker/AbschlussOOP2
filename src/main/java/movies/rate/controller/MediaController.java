@@ -70,14 +70,14 @@ public class MediaController {
         // Spalten für die TableView definieren
         movieTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         movieDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        movieReleaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+        movieReleaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("formattedReleaseDate"));
         movieGenreColumn.setCellValueFactory(new PropertyValueFactory<>("genres"));
         movieRuntimeColumn.setCellValueFactory(new PropertyValueFactory<>("runtimeInMins"));
         movieRatingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
 
         seriesTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
         seriesDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-        seriesReleaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+        seriesReleaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("formattedReleaseDate"));
         seriesGenreColumn.setCellValueFactory(new PropertyValueFactory<>("genres"));
         seriesNumberSeasonsColumn.setCellValueFactory(new PropertyValueFactory<>("nrOfSeasons"));
         seriesRatingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));

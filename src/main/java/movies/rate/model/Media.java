@@ -1,6 +1,7 @@
 package movies.rate.model;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -81,6 +82,12 @@ public abstract class Media implements Serializable {
 
     public void setFskRating(FSKRating fskRating) {
         this.fskRating = fskRating;
+    }
+
+    // Damit das Release-Date korrekt in einem schönen Format angeziegt wird, eine spezifische Methode für die Umformulierung auf dd.MM.yyyy
+    public String getFormattedReleaseDate() {
+    SimpleDateFormat formatter = new SimpleDateFormat("dd.MM.yyyy");
+    return formatter.format(this.releaseDate);
     }
 
     // Calculate average rating based on current rating and the numbers of ratings
