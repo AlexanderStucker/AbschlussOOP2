@@ -33,12 +33,11 @@ public class sidebarController implements Initializable {
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     // MyList wird als erstes geladen
-    loadPage("myList");
+    loadPage("media");
 
     // Lambdas für den wechsel der Pages
-    myListButton.setOnAction(e -> loadPage("myList"));
-    movieButton.setOnAction(e -> loadPage("movie"));
-    suggestionButton.setOnAction(e -> loadPage("suggestions"));
+    myListButton.setOnAction(e -> loadPage("media"));
+    movieButton.setOnAction(e -> loadPage("myList"));
 
   }
 

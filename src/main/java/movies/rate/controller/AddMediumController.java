@@ -31,7 +31,7 @@ public class AddMediumController {
     @FXML 
     private TextField ratingField;
 
-    private MyListController myListController;
+    private MediaController myListController;
 
     private static ObservableList<Movie> movies = FXCollections.observableArrayList();
 
@@ -69,7 +69,7 @@ public class AddMediumController {
 
     }
 
-    public void setMyListController(MyListController myListController) {
+    public void setMyListController(MediaController myListController) {
     this.myListController = myListController;
     }
 

@@ -56,7 +56,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="48.0" prefWidth="185.0" styleClass="mouse-moved" stylesheets="@../main.css">
                <children>
-                  <Button fx:id="myListButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="My List" textFill="WHITE">
+                  <Button fx:id="myListButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="Media" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -68,23 +68,11 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="48.0" prefWidth="185.0" styleClass="mouse-moved" stylesheets="@../main.css">
                <children>
-                  <Button fx:id="movieButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="Movie" textFill="WHITE">
+                  <Button fx:id="movieButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="My List" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="35.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../media/tv.png" />
-                           </image>
-                        </ImageView>
-                     </graphic></Button>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="58.0" prefHeight="48.0" prefWidth="185.0" styleClass="mouse-moved" stylesheets="@../main.css">
-               <children>
-                  <Button fx:id="suggestionButton" mnemonicParsing="false" prefHeight="43.0" prefWidth="196.0" style="-fx-background-color: transparent;" text="Suggestions" textFill="WHITE">
-                     <graphic>
-                        <ImageView fitHeight="36.0" fitWidth="64.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../media/suggestion.png" />
                            </image>
                         </ImageView>
                      </graphic></Button>
