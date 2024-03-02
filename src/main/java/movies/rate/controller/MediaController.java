@@ -17,6 +17,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import movies.rate.model.Movie;
+import movies.rate.model.Series;
 import movies.rate.model.enums.FSKRating;
 import movies.rate.model.enums.Genre;
 
@@ -31,37 +32,55 @@ public class MediaController {
   
   @FXML
   private TableView<Movie> movieTableView;
+  @FXML
+  private TableColumn<Movie, String> movieTitleColumn;
+  @FXML
+  private TableColumn<Movie, String> movieDescriptionColumn;
+  @FXML
+  private TableColumn<Movie, String> movieReleaseDateColumn;
+  @FXML
+  private TableColumn<Movie, String> movieGenreColumn;
+  @FXML
+  private TableColumn<Movie, String> movieRuntimeColumn;
+  @FXML
+  private TableColumn<Movie, String> movieRatingColumn;
   
   @FXML
-  private TableColumn<Movie, String> titleColumn;
-  
+  private TableView<Series> seriesTableView;
   @FXML
-  private TableColumn<Movie, String> descriptionColumn;
-  
+  private TableColumn<Series, String> seriesTitleColumn;
   @FXML
-  private TableColumn<Movie, String> releaseDateColumn;
-  
+  private TableColumn<Series, String> seriesDescriptionColumn;
   @FXML
-  private TableColumn<Movie, String> genreColumn;
+  private TableColumn<Series, String> seriesReleaseDateColumn;
   @FXML
-  private TableColumn<Movie, String> runtimeColumn;
+  private TableColumn<Series, String> seriesGenreColumn;
   @FXML
-  private TableColumn<Movie, String> myRatingColumn;
-  
+  private TableColumn<Series, String> seriesNumberSeasonsColumn;
+  @FXML
+  private TableColumn<Series, String> seriesRatingColumn;
 
 
 @FXML
 public void initialize() {
     // Spalten für die TableView definieren
-    titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-    descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-    releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
-    genreColumn.setCellValueFactory(new PropertyValueFactory<>("genres"));
-    runtimeColumn.setCellValueFactory(new PropertyValueFactory<>("runtimeInMins"));
-    myRatingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
+    movieTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+    movieDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+    movieReleaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+    movieGenreColumn.setCellValueFactory(new PropertyValueFactory<>("genres"));
+    movieRuntimeColumn.setCellValueFactory(new PropertyValueFactory<>("runtimeInMins"));
+    movieRatingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
+
+    seriesTitleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
+    seriesDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
+    seriesReleaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
+    seriesGenreColumn.setCellValueFactory(new PropertyValueFactory<>("genres"));
+    seriesNumberSeasonsColumn.setCellValueFactory(new PropertyValueFactory<>("numberSeasons"));
+    seriesRatingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
     
     // Daten zur TableView hinzufügen
     updateMovieList();
+    updateSeriesList();
 }
       
 
@@ -121,4 +140,31 @@ public void updateMovieList() {
     movieTableView.setItems(moviesToUpdate);
 }
 
+// Methode, um die Liste zu aktualisieren, ohne die gesamte Liste neu zu laden
+public void updateSeriesList() {
+    // Hol dir die aktuelle Liste der Serien in der TableView
+    List<Series> currentSeries = seriesTableView.getItems();
+
+    // Hol dir die Liste der Serien vom AddMediumController
+    List<Series> newSeries = AddMediumController.getSeries();
+
+    // Erstelle eine neue ObservableList für die TableView
+    ObservableList<Series> seriesToUpdate = FXCollections.observableArrayList();
+
+    // Füge alle aktuellen Serien hinzu
+    seriesToUpdate.addAll(currentSeries);
+
+    // Gehe durch die neuen Serien und füge sie hinzu, wenn sie noch nicht vorhanden sind
+    for (Series series : newSeries) {
+        if (!seriesToUpdate.contains(series)) {
+            seriesToUpdate.add(series);
+        }
+    }
+
+    // Setze die aktualisierte Liste als Items der TableView
+    seriesTableView.setItems(seriesToUpdate);
 }
+
+}
+
+

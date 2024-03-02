@@ -19,14 +19,14 @@
       <VBox alignment="CENTER" prefHeight="600.0" prefWidth="520.0" spacing="20">
          <AnchorPane prefHeight="79.0" prefWidth="520.0" style="-fx-background-color: #576776;">
             <children>
-               <Text fill="WHITE" layoutX="160.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new entry">
+               <Text fill="WHITE" layoutX="202.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Add new entry">
                   <font>
                      <Font size="18.0" />
                   </font>
                </Text>
             </children>
          </AnchorPane>
-         <TabPane prefHeight="539.0" prefWidth="520.0" tabClosingPolicy="UNAVAILABLE">
+         <TabPane fx:id="tabPane" prefHeight="539.0" prefWidth="520.0" tabClosingPolicy="UNAVAILABLE">
             <tabs>
                <Tab text="Movies">
                   <content>
@@ -35,22 +35,22 @@
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></Label>
-                        <TextField fx:id="titleField" maxWidth="300.0" promptText="Enter title" />
+                        <TextField fx:id="titleFieldMovies" maxWidth="300.0" promptText="Enter title" />
                         <Label text="Description">
                            <VBox.margin>
                               <Insets />
                            </VBox.margin></Label>
-                        <TextArea fx:id="descriptionField" maxWidth="300.0" promptText="Enter description" />
+                        <TextArea fx:id="descriptionFieldMovies" maxWidth="300.0" promptText="Enter description" />
                         <Label text="Release Date" />
-                        <DatePicker fx:id="releaseDatePicker" maxWidth="300.0" />
+                        <DatePicker fx:id="releaseDatePickerMovies" maxWidth="300.0" />
                         <Label text="Genre" />
-                        <ComboBox fx:id="genreBox" maxWidth="300.0" promptText="Select genre(s)" />
+                        <ComboBox fx:id="genreBoxMovies" maxWidth="300.0" promptText="Select genre(s)" />
                         <Label text="FSK Rating" />
-                        <ComboBox fx:id="fskRatingBox" maxWidth="300.0" promptText="Select FSK rating" />
+                        <ComboBox fx:id="fskRatingBoxMovies" maxWidth="300.0" promptText="Select FSK rating" />
                         <Label text="Runtime (mins)" />
                         <TextField fx:id="runtimeField" maxWidth="300.0" promptText="Enter runtime in minutes" />
                         <Label text="Rating" />
-                        <TextField fx:id="ratingField" maxWidth="300.0" promptText="Enter rating" />
+                        <TextField fx:id="ratingFieldMovies" maxWidth="300.0" promptText="Enter rating" />
                         <Button onAction="#saveMovie" prefHeight="25.0" prefWidth="225.0" style="-fx-background-color: #576776;" text="Save Movie" textFill="WHITE">
                            <VBox.margin>
                               <Insets />
@@ -64,6 +64,42 @@
                <Tab text="TV Shows">
                   <content>
                      <!-- Platz für TV Shows spezifische Eingabefelder -->
+                  </content>
+                  <content>
+                     <VBox alignment="CENTER" prefWidth="520.0" spacing="10">
+                        <padding>
+                           <Insets bottom="10.0" top="10.0" />
+                        </padding>
+                        <children>
+                           <Label text="Title">
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                           </Label>
+                           <TextField fx:id="titleFieldSeasons" maxWidth="300.0" promptText="Enter title" />
+                           <Label text="Description">
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                           </Label>
+                           <TextArea fx:id="descriptionFieldSeasons" maxWidth="300.0" promptText="Enter description" />
+                           <Label text="Release Date" />
+                           <DatePicker fx:id="releaseDatePickerSeasons" maxWidth="300.0" />
+                           <Label text="Genre" />
+                           <ComboBox fx:id="genreBoxSeasons" maxWidth="300.0" promptText="Select genre(s)" />
+                           <Label text="FSK Rating" />
+                           <ComboBox fx:id="fskRatingBoxSeasons" maxWidth="300.0" promptText="Select FSK rating" />
+                           <Label text="Number of Seasons" />
+                           <TextField fx:id="numberOfSeasonsField" maxWidth="300.0" promptText="Enter number of seasons" />
+                           <Label text="Rating" />
+                           <TextField fx:id="ratingFieldSeasons" maxWidth="300.0" promptText="Enter rating" />
+                           <Button onAction="#saveSeries" prefHeight="25.0" prefWidth="225.0" style="-fx-background-color: #576776;" text="Save Series" textFill="WHITE">
+                              <VBox.margin>
+                                 <Insets />
+                              </VBox.margin>
+                           </Button>
+                        </children>
+                     </VBox>
                   </content>
                </Tab>
             </tabs>

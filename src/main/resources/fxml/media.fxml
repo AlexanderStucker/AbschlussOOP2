@@ -25,20 +25,31 @@
          <tabs>
             <Tab closable="false" text="Movies">
                <content>
-                  <TableView fx:id="movieTableView" prefHeight="200.0" prefWidth="200.0">
+                  <TableView fx:id="movieTableView">
                     <columns>
-                      <TableColumn fx:id="titleColumn" prefWidth="105.0" text="Title" />
-                      <TableColumn fx:id="descriptionColumn" prefWidth="400.0" text="Description" />
-                        <TableColumn fx:id="releaseDateColumn" prefWidth="150.0" text="Release Date" />
-                        <TableColumn fx:id="genreColumn" prefWidth="105.0" text="Genre" />
-                        <TableColumn fx:id="runtimeColumn" prefWidth="105.0" text="Runtime" />
-                        <TableColumn fx:id="myRatingColumn" prefWidth="105.0" text="My Rating" />
-                        <TableColumn prefWidth="105.0" text="Avg. Rating" />
+                      <TableColumn fx:id="movieTitleColumn" prefWidth="105.0" text="Title" />
+                      <TableColumn fx:id="movieDescriptionColumn" prefWidth="600.0" text="Description" />
+                        <TableColumn fx:id="movieReleaseDateColumn" minWidth="105.0" prefWidth="120.0" text="Release Date" />
+                        <TableColumn fx:id="movieGenreColumn" minWidth="105.0" prefWidth="105.0" text="Genre" />
+                        <TableColumn fx:id="movieRuntimeColumn" prefWidth="120.0" text="Runtime" />
+                        <TableColumn fx:id="movieRatingColumn" minWidth="105.0" prefWidth="105.0" text="Rating" />
                     </columns>
                   </TableView>
                </content>
             </Tab>
-            <Tab closable="false" text="TV-Shows" />
+            <Tab closable="false" text="TV-Shows">
+               <content>
+                  <TableView fx:id="seriesTableView" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="seriesTitleColumn" prefWidth="105.0" text="Title" />
+                      <TableColumn fx:id="seriesDescriptionColumn" prefWidth="600.0" text="Description" />
+                        <TableColumn fx:id="seriesReleaseDateColumn" prefWidth="120.0" text="Release Date" />
+                        <TableColumn fx:id="seriesGenreColumn" prefWidth="105.0" text="Genre" />
+                        <TableColumn fx:id="seriesNumberSeasonsColumn" prefWidth="120.0" text="Number of Seasons" />
+                        <TableColumn fx:id="seriesRatingColumn" prefWidth="105.0" text="Rating" />
+                    </columns>
+                  </TableView>
+               </content></Tab>
          </tabs>
       </TabPane>
    </children>

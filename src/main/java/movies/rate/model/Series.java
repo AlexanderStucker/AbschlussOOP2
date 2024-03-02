@@ -17,6 +17,11 @@ public class Series extends Media{
         this.seasons = seasons;
     }
 
+
+    public int getNumberSeasons(){
+        return seasons.size();
+    }
+
     /**
      * Return the average rating of all seasons
      */
