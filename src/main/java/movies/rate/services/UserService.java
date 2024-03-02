@@ -47,6 +47,14 @@ public class UserService implements SerializingService {
     @Override
     public void serialize() throws IOException {
         if (this.users != null) {
+
+            User loginUser = LoginService.getInstance().getLoginUser();
+            if(loginUser != null) {
+                System.out.println("Syncing user");
+                this.users.removeIf(user -> user.getUsername().equals(loginUser.getUsername()));
+                this.users.add(loginUser);
+            }
+
             FileOutputStream fOut = new FileOutputStream(FILENAME);
             ObjectOutputStream out = new ObjectOutputStream(fOut);
             out.writeObject(this.users);

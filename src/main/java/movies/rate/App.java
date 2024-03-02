@@ -47,11 +47,9 @@ public class App extends Application {
             LOG.severe("Error while deserializing Data");
         }
 
-
         // Set Eventhandler for closeRequest to serialize all the data
         stage.setOnCloseRequest(new EventHandler<WindowEvent>() {
             public void handle(WindowEvent e) {
-
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setTitle("Applikation schliessen");
                 alert.setHeaderText("Möchten sie die Applikation wirklich schliessen?");

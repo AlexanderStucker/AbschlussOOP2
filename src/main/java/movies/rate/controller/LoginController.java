@@ -49,7 +49,7 @@ public class LoginController {
       giveUsername.setUsername(loginUser.getUsername());
 
       // Stage für das neue Fenster eröffnen
-      Stage mainStage = new Stage();
+      Stage mainStage = (Stage) usernameField.getScene().getWindow();
       mainStage.setTitle("CineRate");
       mainStage.setScene(new Scene(root, 1350, 900));
       mainStage.setResizable(false);
