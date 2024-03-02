@@ -1,10 +1,12 @@
 package movies.rate.services;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -64,10 +66,14 @@ public class UserService implements SerializingService {
     @SuppressWarnings("unchecked")
     @Override
     public void deserialize() throws IOException, ClassNotFoundException {
+        try {
         FileInputStream fIn = new FileInputStream(FILENAME);
         ObjectInputStream in = new ObjectInputStream(fIn);
         this.users = (List<User>) in.readObject();
         in.close();
+        } catch (FileNotFoundException e) {
+            this.users = new ArrayList<>();
+        }
     }
 
     /**
@@ -86,8 +92,7 @@ public class UserService implements SerializingService {
      *                                been found
      */
     public User getUser(String username) throws NoSuchElementException {
-        return this.users.stream().filter(user -> user.getUsername() == username).findFirst()
-                .orElseThrow(NoSuchElementException::new);
+        return this.users.stream().filter(user -> user.getUsername().equals(username)).findAny().orElseThrow(NoSuchElementException::new);
     }
 
     /**
@@ -98,7 +103,7 @@ public class UserService implements SerializingService {
      *                                  exists in the list
      */
     public void addUser(User newUser) throws IllegalArgumentException {
-        if (!this.users.stream().filter(user -> user.getUsername() == newUser.getUsername()).findFirst().isPresent()) {
+        if (!this.users.stream().filter(user -> user.getUsername().equals(newUser.getUsername())).findFirst().isPresent()) {
             this.users.add(newUser);
         } else {
             throw new IllegalArgumentException();

@@ -1,12 +1,7 @@
 package movies.rate.controller;
 
-
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.NoSuchElementException;
 
 import javafx.animation.PauseTransition;
 import javafx.event.ActionEvent;
@@ -21,6 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import movies.rate.model.User;
+import movies.rate.services.LoginService;
 
 public class LoginController {
 
@@ -37,55 +33,56 @@ public class LoginController {
   @FXML
   private Button cancelButton;
 
-  
-  
   @FXML
-  public void loginButtonAction(ActionEvent event) throws IOException{
+  public void loginButtonAction(ActionEvent event) throws IOException {
     String username = usernameField.getText();
     String password = passwordField.getText();
 
-    // Falls der User bekannt ist, ist Login i. O. / Falls nicht, login Failed
-    if(userValidation(username, password)){
-    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/sidebar.fxml"));
-    Parent root = fxmlLoader.load();
+    try {
+      User loginUser = LoginService.getInstance().login(username, password);
 
+      FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/sidebar.fxml"));
+      Parent root = fxmlLoader.load();
 
-    // Der Username wird an den movieController weitergegeben
-    sidebarController giveUsername = fxmlLoader.getController();
-    giveUsername.setUsername(username);
+      // Der Username wird an den movieController weitergegeben
+      sidebarController giveUsername = fxmlLoader.getController();
+      giveUsername.setUsername(loginUser.getUsername());
 
-    // Stage für das neue Fenster eröffnen
-    Stage mainStage = new Stage();
-    mainStage.setTitle("CineRate");
-    mainStage.setScene(new Scene(root, 1350, 900));
-    mainStage.setResizable(false);
+      // Stage für das neue Fenster eröffnen
+      Stage mainStage = new Stage();
+      mainStage.setTitle("CineRate");
+      mainStage.setScene(new Scene(root, 1350, 900));
+      mainStage.setResizable(false);
 
-    // Die Login-Stage schliessen
-    Stage loginStage = (Stage) loginButton.getScene().getWindow();
-    loginStage.close();
+      // Die Login-Stage schliessen
+      Stage loginStage = (Stage) loginButton.getScene().getWindow();
+      loginStage.close();
 
-    // Die Movie-Stage anzeigen
-    mainStage.show();
-  
-  }else{
-      wrongPasswordLabel.setText("Wrong password or username");
+      // Die Movie-Stage anzeigen
+      mainStage.show();
+
+    } catch (IllegalArgumentException ex) {
+      wrongPasswordLabel.setText("Wrong password or username!");
       wrongPasswordLabel.setVisible(true);
 
-      // Nach 2 Sekunden wird das Label wieder auf unsichtbar gestellt
-      PauseTransition waitTime = new PauseTransition(Duration.seconds(2));
-      waitTime.setOnFinished(e -> wrongPasswordLabel.setVisible(false));
-      waitTime.play();
-
+    } catch (NoSuchElementException e) {
+      wrongPasswordLabel.setText("User does not exist!");
+      wrongPasswordLabel.setVisible(true);
     }
+
+    // Nach 2 Sekunden wird das Label wieder auf unsichtbar gestellt
+    PauseTransition waitTime = new PauseTransition(Duration.seconds(2));
+    waitTime.setOnFinished(e -> wrongPasswordLabel.setVisible(false));
+    waitTime.play();
   }
-  
+
   @FXML
-  public void registerButtonAction(ActionEvent event) throws IOException{
-    
+  public void registerButtonAction(ActionEvent event) throws IOException {
+
     // FXML laden
     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/registration.fxml"));
     Parent root = fxmlLoader.load();
-    
+
     // Stage für das neue Fenster setzen
     Stage registerStage = new Stage();
     registerStage.setTitle("Registrierung");
@@ -99,44 +96,14 @@ public class LoginController {
     // Modalität des Registrationsfensters setzen
     registerStage.initModality(Modality.WINDOW_MODAL);
     registerStage.initOwner(loginStage);
-    
+
     registerStage.show();
   }
-  
+
   @FXML
-  public void cancelButtonAction(ActionEvent event){
+  public void cancelButtonAction(ActionEvent event) {
     // Ganze Stage schliessen
     Stage stage = (Stage) cancelButton.getScene().getWindow();
     stage.close();
   }
-
-
-  // Methode um zu prüfen ob der User sich registriert hat
-  private boolean userValidation(String username, String password){
-
-    // Die Datei muss deserialisiert werden
-    List <User> userList = readUsers();
-    
-    // Datei nach dem User durchsuchen
-    for (User user : userList) {
-      if (user.getUsername().equals(username) && user.getPassword().equals(password)) {
-        return true;
-      }
-    }
-    return false;
-  }
-
-  // Methode um Users auszulesen
-  private List<User> readUsers(){
-    File file = new File("users.ser");
-
-    // Datei deserialisieren und liste zurückgeben. 
-    try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-        return (List<User>) in.readObject();
-    // IOException und ClassException. eine leere ArrayListe zurückgeben, falls eine Eception auftritt
-      } catch (IOException | ClassNotFoundException e) {
-        e.printStackTrace();
-        return new ArrayList<>();
-      }
-    }
 }

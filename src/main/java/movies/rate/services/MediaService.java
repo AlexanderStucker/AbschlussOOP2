@@ -1,10 +1,12 @@
 package movies.rate.services;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import movies.rate.interfaces.SerializingService;
@@ -63,10 +65,14 @@ public class MediaService implements SerializingService {
     @SuppressWarnings("unchecked")
     @Override
     public void deserialize() throws IOException, ClassNotFoundException {
+        try {
         FileInputStream fIn = new FileInputStream(FILENAME);
         ObjectInputStream in = new ObjectInputStream(fIn);
         this.media = (List<Media>) in.readObject();
         in.close();
+        } catch (FileNotFoundException e) {
+            this.media = new ArrayList<>();
+        }
     }
 
     /**
@@ -94,7 +100,7 @@ public class MediaService implements SerializingService {
      *                                  already exists in the list
      */
     public void addMedia(Media newMedia) throws IllegalArgumentException {
-        if (!this.media.stream().filter(media -> media.getTitle() == newMedia.getTitle()).findAny().isPresent()) {
+        if (!this.media.stream().filter(media -> media.getTitle().equals(newMedia.getTitle())).findAny().isPresent()) {
             this.media.add(newMedia);
         } else {
             throw new IllegalArgumentException();
@@ -107,6 +113,6 @@ public class MediaService implements SerializingService {
      * @param mediaToRemove the piece of media to be removed
      */
     public void removeMedia(Media mediaToRemove) {
-        this.media.removeIf(media -> media.getTitle() == mediaToRemove.getTitle());
+        this.media.removeIf(media -> media.getTitle().equals(mediaToRemove.getTitle()));
     }
 }
