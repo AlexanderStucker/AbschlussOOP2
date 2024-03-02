@@ -9,7 +9,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
-        <project.mainclass>movies.rate/movies.rate.App</project.mainclass>
+        <project.mainclass>movies.rate.App</project.mainclass>
     </properties>
     <dependencies>
         <dependency>
@@ -47,11 +47,6 @@
             <version>3.6.0</version>
             <scope>test</scope>
         </dependency>
-
-
-
-
-
     </dependencies>
     <build>
         <plugins>
@@ -86,6 +81,22 @@
                     <mainClass>${project.mainclass}</mainClass>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>org.panteleyev</groupId>
+                <artifactId>jpackage-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <configuration>
+                  <name>Movie Rate App</name>
+                  <appVersion>1.0.0</appVersion>
+                  <vendor>ch.hftm</vendor>
+                  <destination>target/dist</destination>
+                  <module>${project.mainclass}</module>
+                  <runtimeImage>target/App</runtimeImage>
+                  <javaOptions>
+                    <option>-Dfile.encoding=UTF-8</option>
+                  </javaOptions>
+                </configuration>
+              </plugin>
         </plugins>
     </build>
 </project>
