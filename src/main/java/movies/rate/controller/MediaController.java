@@ -1,7 +1,9 @@
 package movies.rate.controller;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -12,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -59,6 +62,8 @@ public class MediaController {
     private TableColumn<Series, String> seriesNumberSeasonsColumn;
     @FXML
     private TableColumn<Series, String> seriesRatingColumn;
+    @FXML
+    private TextField searchField;
 
     @FXML
     public void initialize() {
@@ -80,6 +85,11 @@ public class MediaController {
         // Daten zur TableView hinzufügen
         updateMovieList();
         updateSeriesList();
+
+         // Add a listener to the search field to filter the list of movies and series
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+        searchMedia(newValue);
+        });
     }
 
     @FXML
@@ -145,5 +155,33 @@ public class MediaController {
         seriesTableView
                 .setItems(FXCollections.observableArrayList(MediaService.getInstance().getMediaByType(Series.class)));
     }
+
+
+    private void searchMedia(String searchText) {
+    if (searchText == null || searchText.isEmpty()) {
+        updateMovieList();
+        updateSeriesList();
+    } else {
+        // Eingabe immer im Lower-case behandeln
+        String lowerCaseSearchText = searchText.toLowerCase();
+
+        // Filme filtern (achtung ebenfalls zu Lower-Case)
+        List<Movie> filteredMovies = MediaService.getInstance().getMediaByType(Movie.class).stream()
+            .filter(movie -> movie.getTitle().toLowerCase().contains(lowerCaseSearchText))
+            .collect(Collectors.toList());
+        movieTableView.setItems(FXCollections.observableArrayList(filteredMovies));
+
+        // Dasselbe mit Serien
+        List<Series> filteredSeries = MediaService.getInstance().getMediaByType(Series.class).stream()
+            .filter(series -> series.getTitle().toLowerCase().contains(lowerCaseSearchText))
+            .collect(Collectors.toList());
+        seriesTableView.setItems(FXCollections.observableArrayList(filteredSeries));
+    }
+}
+
+
+
+
+
 
 }

@@ -6,13 +6,13 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.rate.controller.MyListController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.rate.controller.MyListController">
    <children>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" onAction="#removeFromMyListButtonAction" text="Delete from my List" />
          </children></HBox>
-      <TableView fx:id="myListTable" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="myListTable" VBox.vgrow="ALWAYS">
         <columns>
           <TableColumn fx:id="titleColumn" prefWidth="105.0" text="Title" />
           <TableColumn fx:id="descriptionColumn" prefWidth="400.0" text="Description" />
