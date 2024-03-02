@@ -8,6 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 import movies.rate.interfaces.SerializingService;
 import movies.rate.model.Media;
@@ -114,5 +115,13 @@ public class MediaService implements SerializingService {
      */
     public void removeMedia(Media mediaToRemove) {
         this.media.removeIf(media -> media.getTitle().equals(mediaToRemove.getTitle()));
+    }
+
+    public int getNewId() {
+        try {
+            return (int) this.media.stream().mapToInt(Media::getId).max().orElseThrow();
+        } catch (NoSuchElementException e) {
+            return 0;
+        }
     }
 }

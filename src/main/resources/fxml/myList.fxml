@@ -1,37 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.rate.controller.MyListController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.rate.controller.MyListController">
    <children>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
          <children>
             <Button mnemonicParsing="false" text="Delete from my List" />
          </children></HBox>
-      <TabPane fx:id="tabPane" VBox.vgrow="ALWAYS">
-         <tabs>
-            <Tab closable="false" text="Movies">
-               <content>
-                  <TableView fx:id="myListTableView" prefHeight="200.0" prefWidth="200.0">
-                    <columns>
-                      <TableColumn fx:id="titleColumn" prefWidth="105.0" text="Title" />
-                      <TableColumn fx:id="descriptionColumn" prefWidth="400.0" text="Description" />
-                        <TableColumn fx:id="releaseDateColumn" prefWidth="150.0" text="Release Date" />
-                        <TableColumn fx:id="genreColumn" prefWidth="105.0" text="Genre" />
-                        <TableColumn fx:id="runtimeColumn" prefWidth="105.0" text="Runtime" />
-                        <TableColumn fx:id="myRatingColumn" prefWidth="105.0" text="Rating" />
-                    </columns>
-                  </TableView>
-               </content>
-            </Tab>
-            <Tab closable="false" text="TV-Shows" />
-         </tabs>
-      </TabPane>
+      <TableView fx:id="myListMovieTable" prefHeight="200.0" prefWidth="200.0">
+        <columns>
+          <TableColumn fx:id="titleColumn" prefWidth="105.0" text="Title" />
+          <TableColumn fx:id="descriptionColumn" prefWidth="400.0" text="Description" />
+            <TableColumn fx:id="releaseDateColumn" prefWidth="150.0" text="Release Date" />
+            <TableColumn fx:id="genreColumn" prefWidth="105.0" text="Genre" />
+            <TableColumn fx:id="myRatingColumn" prefWidth="105.0" text="My Rating" />
+        </columns>
+      </TableView>
    </children>
 </VBox>

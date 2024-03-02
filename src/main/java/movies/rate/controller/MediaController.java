@@ -1,10 +1,8 @@
 package movies.rate.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,8 +16,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 import movies.rate.model.Movie;
 import movies.rate.model.Series;
-import movies.rate.model.enums.FSKRating;
-import movies.rate.model.enums.Genre;
+import movies.rate.services.MediaService;
 
 
 public class MediaController {
@@ -75,7 +72,7 @@ public void initialize() {
     seriesDescriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
     seriesReleaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
     seriesGenreColumn.setCellValueFactory(new PropertyValueFactory<>("genres"));
-    seriesNumberSeasonsColumn.setCellValueFactory(new PropertyValueFactory<>("numberSeasons"));
+    seriesNumberSeasonsColumn.setCellValueFactory(new PropertyValueFactory<>("nrOfSeasons"));
     seriesRatingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
     
     // Daten zur TableView hinzufügen
@@ -115,54 +112,15 @@ public void initialize() {
     addMediumStage.show();
   }
 
-// Methode, um die Liste zu aktualisieren, ohne die gesamte Liste neu zu laden
+// Filmliste aktualisieren
 public void updateMovieList() {
-    // Hol dir die aktuelle Liste der Filme in der TableView
-    List<Movie> currentMovies = movieTableView.getItems();
-
-    // Hol dir die Liste der Filme vom AddMediumController
-    List<Movie> newMovies = AddMediumController.getMovies();
-
-    // Erstelle eine neue ObservableList für die TableView
-    ObservableList<Movie> moviesToUpdate = FXCollections.observableArrayList();
-
-    // Füge alle aktuellen Filme hinzu
-    moviesToUpdate.addAll(currentMovies);
-
-    // Gehe durch die neuen Filme und füge sie hinzu, wenn sie noch nicht vorhanden sind
-    for (Movie newMovie : newMovies) {
-        if (!moviesToUpdate.contains(newMovie)) {
-            moviesToUpdate.add(newMovie);
-        }
-    }
-
-    // Setze die aktualisierte Liste als Items der TableView
-    movieTableView.setItems(moviesToUpdate);
+    movieTableView.setItems(FXCollections.observableArrayList(MediaService.getInstance().getMediaByType(Movie.class)));
 }
 
-// Methode, um die Liste zu aktualisieren, ohne die gesamte Liste neu zu laden
+// Serienliste aktualisieren
 public void updateSeriesList() {
-    // Hol dir die aktuelle Liste der Serien in der TableView
-    List<Series> currentSeries = seriesTableView.getItems();
 
-    // Hol dir die Liste der Serien vom AddMediumController
-    List<Series> newSeries = AddMediumController.getSeries();
-
-    // Erstelle eine neue ObservableList für die TableView
-    ObservableList<Series> seriesToUpdate = FXCollections.observableArrayList();
-
-    // Füge alle aktuellen Serien hinzu
-    seriesToUpdate.addAll(currentSeries);
-
-    // Gehe durch die neuen Serien und füge sie hinzu, wenn sie noch nicht vorhanden sind
-    for (Series series : newSeries) {
-        if (!seriesToUpdate.contains(series)) {
-            seriesToUpdate.add(series);
-        }
-    }
-
-    // Setze die aktualisierte Liste als Items der TableView
-    seriesTableView.setItems(seriesToUpdate);
+    seriesTableView.setItems(FXCollections.observableArrayList(MediaService.getInstance().getMediaByType(Series.class)));
 }
 
 }

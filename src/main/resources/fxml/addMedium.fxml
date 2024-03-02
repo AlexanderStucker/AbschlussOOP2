@@ -14,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.rate.controller.AddMediumController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="520.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.rate.controller.AddMediumController">
    <children>
       <VBox alignment="CENTER" prefHeight="600.0" prefWidth="520.0" spacing="20">
          <AnchorPane prefHeight="79.0" prefWidth="520.0" style="-fx-background-color: #576776;">
@@ -105,5 +105,6 @@
             </tabs>
          </TabPane>
       </VBox>
+      <Text fx:id="newMediaErrorLabel" layoutX="119.0" layoutY="610.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="283.0" />
    </children>
 </AnchorPane>

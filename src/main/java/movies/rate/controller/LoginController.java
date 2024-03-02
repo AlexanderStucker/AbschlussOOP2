@@ -54,10 +54,6 @@ public class LoginController {
       mainStage.setScene(new Scene(root, 1350, 900));
       mainStage.setResizable(false);
 
-      // Die Login-Stage schliessen
-      Stage loginStage = (Stage) loginButton.getScene().getWindow();
-      loginStage.close();
-
       // Die Movie-Stage anzeigen
       mainStage.show();
 

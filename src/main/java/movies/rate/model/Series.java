@@ -9,25 +9,19 @@ import movies.rate.model.enums.Genre;
 public class Series extends Media{
     
     private static final long serialVersionUID = 1L;
-
-    private List<Season> seasons;
+    private int nrOfSeasons;
     
-    public Series(String title, String description, Date releaseDate, List<Genre> genres, FSKRating fskRating, List<Season> seasons) {
+    public Series(String title, String description, Date releaseDate, List<Genre> genres, FSKRating fskRating, int nrOfSeasons) {
         super(title, description, releaseDate, genres, fskRating);
-        this.seasons = seasons;
+        this.nrOfSeasons = nrOfSeasons;
     }
 
 
-    public int getNumberSeasons(){
-        return seasons.size();
+    public int getNrOfSeasons() {
+        return this.nrOfSeasons;
     }
 
-    /**
-     * Return the average rating of all seasons
-     */
-    @Override
-    public double getRating() {
-        return seasons.stream().mapToDouble(Season::getRating).average().orElse(0);
+    public void setNrOfSeasons(int nrOfSeasons) {
+        this.nrOfSeasons = nrOfSeasons;
     }
-
 }
