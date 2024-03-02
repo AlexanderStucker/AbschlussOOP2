@@ -8,8 +8,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.stream.Collectors;
+
 
 import movies.rate.interfaces.SerializingService;
 import movies.rate.model.Media;
@@ -130,5 +129,9 @@ public class MediaService implements SerializingService {
 
     public int getNewId() {
         return this.media.stream().mapToInt(media -> media.getId()).max().orElse(0)+1;
+    }
+
+    public void resetMediaList() {
+        this.media = new ArrayList<>();
     }
 }
