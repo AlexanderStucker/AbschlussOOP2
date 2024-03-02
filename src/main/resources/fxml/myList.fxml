@@ -10,9 +10,9 @@
    <children>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
          <children>
-            <Button mnemonicParsing="false" text="Delete from my List" />
+            <Button mnemonicParsing="false" onAction="#removeFromMyListButtonAction" text="Delete from my List" />
          </children></HBox>
-      <TableView fx:id="myListMovieTable" prefHeight="200.0" prefWidth="200.0">
+      <TableView fx:id="myListTable" prefHeight="200.0" prefWidth="200.0">
         <columns>
           <TableColumn fx:id="titleColumn" prefWidth="105.0" text="Title" />
           <TableColumn fx:id="descriptionColumn" prefWidth="400.0" text="Description" />

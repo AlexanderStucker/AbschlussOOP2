@@ -9,12 +9,12 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.rate.controller.MediaController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="movies.rate.controller.MediaController">
    <children>
       <HBox alignment="CENTER" prefHeight="50.0" prefWidth="600.0">
          <children>
             <Button fx:id="addButton" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#addMediumButtonAction" text="Add new entry" />
-            <Button fx:id="addToMyListButton" mnemonicParsing="false" text="Add Entry to my List">
+            <Button fx:id="addToMyListButton" mnemonicParsing="false" onAction="#addToMyListButtonAction" text="Add Entry to my List">
                <HBox.margin>
                   <Insets left="50.0" />
                </HBox.margin>
