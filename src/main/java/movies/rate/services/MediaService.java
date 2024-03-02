@@ -110,6 +110,16 @@ public class MediaService implements SerializingService {
     }
 
     /**
+     * Replace existing media
+     * @param newMedia Media to be replaced
+     * @throws NoSuchElementException if no media with the given ID is present
+     */
+    public void updateMedia(Media newMedia) throws NoSuchElementException {
+        this.media.removeIf(media -> media.getId() == newMedia.getId());
+        addMedia(newMedia);
+    }
+
+    /**
      * Remove a piece of media from the list
      * 
      * @param mediaToRemove the piece of media to be removed

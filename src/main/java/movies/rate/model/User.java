@@ -2,7 +2,9 @@ package movies.rate.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 import movies.rate.services.MediaService;
@@ -14,6 +16,7 @@ public class User implements Serializable {
   private String username;
   private String password;
   private List<Integer> mediaListIds = new ArrayList<>();
+  private Map<Integer, Double> ratings = new HashMap<>();
   
   public User() {
   }
@@ -37,6 +40,10 @@ public class User implements Serializable {
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public Map<Integer,Double> getRatings() {
+    return this.ratings;
   }
 
   public List<Media> getMyList() {

@@ -100,6 +100,14 @@ public abstract class Media implements Serializable {
 
     }
 
+    // Replace a users rating and calculate the new average
+    public void updateRating(double oldRating, double newRating) {
+        if(newRating > 10 || newRating < 1) {
+            throw new IllegalArgumentException();
+        }
+
+        this.rating = (((this.rating * this.nrOfRatings) - oldRating) + newRating) / this.nrOfRatings;
+    }
 
 
 }

@@ -18,6 +18,7 @@ import movies.rate.model.Movie;
 import movies.rate.model.Series;
 import movies.rate.model.enums.FSKRating;
 import movies.rate.model.enums.Genre;
+import movies.rate.services.LoginService;
 import movies.rate.services.MediaService;
 
 public class AddMediumController {
@@ -89,6 +90,7 @@ public class AddMediumController {
 
             Movie movie = new Movie(title, description, releaseDate, genres, fskRating, runtimeInMins);
             movie.addRating(rating);
+            LoginService.getInstance().getLoginUser().getRatings().put(movie.getId(), rating);
             try {
                 MediaService.getInstance().addMedia(movie);
             } catch (IllegalArgumentException ex) {
@@ -125,6 +127,7 @@ public class AddMediumController {
             double rating = Double.parseDouble(ratingFieldSeasons.getText());
 
             Series newSeries = new Series(title, description, releaseDate, genres, fskRating, nrOfSeasons);
+            LoginService.getInstance().getLoginUser().getRatings().put(newSeries.getId(), rating);
             newSeries.addRating(rating);
             try {
                 MediaService.getInstance().addMedia(newSeries);
