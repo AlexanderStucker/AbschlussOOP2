@@ -38,6 +38,10 @@ public class UserService implements SerializingService {
         return INSTANCE;
     }
 
+    public static void setInstance(UserService instance) {
+        INSTANCE = instance;
+    }
+
     /**
      * Serialize all Users into file
      * Should be run on application shutdown
@@ -116,4 +120,10 @@ public class UserService implements SerializingService {
             throw new IllegalArgumentException();
         }
     }
+
+
+
+
+
+
 }
