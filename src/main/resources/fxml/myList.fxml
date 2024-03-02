@@ -25,8 +25,7 @@
                         <TableColumn fx:id="releaseDateColumn" prefWidth="150.0" text="Release Date" />
                         <TableColumn fx:id="genreColumn" prefWidth="105.0" text="Genre" />
                         <TableColumn fx:id="runtimeColumn" prefWidth="105.0" text="Runtime" />
-                        <TableColumn fx:id="myRatingColumn" prefWidth="105.0" text="My Rating" />
-                        <TableColumn prefWidth="105.0" text="Avg. Rating" />
+                        <TableColumn fx:id="myRatingColumn" prefWidth="105.0" text="Rating" />
                     </columns>
                   </TableView>
                </content>
