@@ -1,7 +1,6 @@
 package movies.rate.controller;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -29,33 +28,33 @@ public class MyListController {
   @FXML
   private TableView<Movie> movieTableView;
 
+  @FXML
+  private TableColumn<Movie, String> titleColumn;
+
+  @FXML
+  private TableColumn<Movie, String> descriptionColumn;
+
+  @FXML
+  private TableColumn<Movie, String> releaseDateColumn;
+
+  @FXML
+  private TableColumn<Movie, String> genreColumn;
+  @FXML
+  private TableColumn<Movie, String> runtimeColumn;
+  @FXML
+  private TableColumn<Movie, String> myRatingColumn;
+
+
 @FXML
 public void initialize() {
     // Spalten für die TableView definieren
-    TableColumn<Movie, String> titleColumn = new TableColumn<>("Title");
     titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
-    
-    TableColumn<Movie, String> descriptionColumn = new TableColumn<>("Description");
     descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));
-    
-    TableColumn<Movie, Date> releaseDateColumn = new TableColumn<>("Release Date");
     releaseDateColumn.setCellValueFactory(new PropertyValueFactory<>("releaseDate"));
-    
-    TableColumn<Movie, List<Genre>> genreColumn = new TableColumn<>("Genre");
-    genreColumn.setCellValueFactory(new PropertyValueFactory<>("genres")); // Beachte, dass dies komplexer ist und möglicherweise angepasst werden muss
-    
-    TableColumn<Movie, FSKRating> fskRatingColumn = new TableColumn<>("FSK Rating");
-    fskRatingColumn.setCellValueFactory(new PropertyValueFactory<>("fskRating"));
-    
-    TableColumn<Movie, Integer> runtimeColumn = new TableColumn<>("Runtime");
+    genreColumn.setCellValueFactory(new PropertyValueFactory<>("genres"));
     runtimeColumn.setCellValueFactory(new PropertyValueFactory<>("runtimeInMins"));
+    myRatingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
     
-    TableColumn<Movie, Double> ratingColumn = new TableColumn<>("My Rating");
-    ratingColumn.setCellValueFactory(new PropertyValueFactory<>("rating"));
-
-    // Spalten zur TableView hinzufügen
-    movieTableView.getColumns().addAll(titleColumn, descriptionColumn, releaseDateColumn, genreColumn, fskRatingColumn, runtimeColumn, ratingColumn);
-
     // Daten zur TableView hinzufügen
     updateMovieList();
 }
