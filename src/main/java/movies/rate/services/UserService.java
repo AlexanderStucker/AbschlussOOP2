@@ -50,7 +50,6 @@ public class UserService implements SerializingService {
 
             User loginUser = LoginService.getInstance().getLoginUser();
             if(loginUser != null) {
-                System.out.println("Syncing user");
                 this.users.removeIf(user -> user.getUsername().equals(loginUser.getUsername()));
                 this.users.add(loginUser);
             }

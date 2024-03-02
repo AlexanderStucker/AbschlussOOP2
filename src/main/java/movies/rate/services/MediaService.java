@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.stream.Collectors;
 
 import movies.rate.interfaces.SerializingService;
 import movies.rate.model.Media;
@@ -67,10 +68,10 @@ public class MediaService implements SerializingService {
     @Override
     public void deserialize() throws IOException, ClassNotFoundException {
         try {
-        FileInputStream fIn = new FileInputStream(FILENAME);
-        ObjectInputStream in = new ObjectInputStream(fIn);
-        this.media = (List<Media>) in.readObject();
-        in.close();
+            FileInputStream fIn = new FileInputStream(FILENAME);
+            ObjectInputStream in = new ObjectInputStream(fIn);
+            this.media = (List<Media>) in.readObject();
+            in.close();
         } catch (FileNotFoundException e) {
             this.media = new ArrayList<>();
         }
@@ -118,10 +119,6 @@ public class MediaService implements SerializingService {
     }
 
     public int getNewId() {
-        try {
-            return (int) this.media.stream().mapToInt(Media::getId).max().orElseThrow();
-        } catch (NoSuchElementException e) {
-            return 0;
-        }
+        return this.media.stream().mapToInt(media -> media.getId()).max().orElse(0)+1;
     }
 }

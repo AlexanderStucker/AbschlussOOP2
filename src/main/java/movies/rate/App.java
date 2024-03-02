@@ -42,7 +42,6 @@ public class App extends Application {
         try {
             UserService.getInstance().deserialize();
             MediaService.getInstance().deserialize();
-            System.out.println(UserService.getInstance().getUsers());
         } catch (ClassNotFoundException e) {
             LOG.severe("Error while deserializing Data");
         }

@@ -32,8 +32,6 @@ public class MyListController {
   @FXML
   public void initialize() {
 
-    System.out.println(LoginService.getInstance().getLoginUser().getMyList());
-
     // Spalten für die Film TableView definieren
     titleColumn.setCellValueFactory(new PropertyValueFactory<>("title"));
     descriptionColumn.setCellValueFactory(new PropertyValueFactory<>("description"));

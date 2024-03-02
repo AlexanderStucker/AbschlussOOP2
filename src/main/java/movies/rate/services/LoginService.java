@@ -44,9 +44,6 @@ public class LoginService {
      */
     public User login(String username, String password) throws IllegalArgumentException, NoSuchElementException {
         User user = UserService.getInstance().getUser(username);
-
-        System.out.println(user.getPassword() + " -> " + password);
-
         if (!user.getPassword().equals(password)) {
             throw new IllegalArgumentException();
         }

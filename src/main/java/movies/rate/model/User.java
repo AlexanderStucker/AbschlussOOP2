@@ -40,17 +40,17 @@ public class User implements Serializable {
   }
 
   public List<Media> getMyList() {
-    return MediaService.getInstance().getMedia().stream().filter(media -> this.mediaListIds.contains(media.getId())).collect(Collectors.toList());
+    return MediaService.getInstance().getMedia().stream().filter(media -> this.mediaListIds.contains((Integer) media.getId())).collect(Collectors.toList());
   }
 
   public void addToMyList(Media media) {
-    if(!this.mediaListIds.contains(media.getId())) {
-      this.mediaListIds.add(media.getId());
+    if(!this.mediaListIds.contains(Integer.valueOf(media.getId()))) {
+      this.mediaListIds.add(Integer.valueOf(media.getId()));
     }
   }
 
   public void removeFromMyList(Media media) {
-    this.mediaListIds.remove(media.getId());
+    this.mediaListIds.remove(this.mediaListIds.indexOf(media.getId()));
   }
   
 }
